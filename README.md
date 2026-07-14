@@ -86,25 +86,5 @@ dev-setup/
     └── ghostty/config
 ```
 
-## Key Notes
 
-- **Bash stays default** - Zsh only runs in Ghostty terminal
-- **Backups created** - All configs backed up with `.bak` extension before modification
-- **Safe to re-run** - Fully idempotent, checks before installing
 
-## Troubleshooting
-
-**Fonts not rendering**:
-```bash
-fc-cache -f -v
-```
-
-**Re-run setup**:
-```bash
-./setup.sh  # Safe to run multiple times
-```
-
-**Restore from backup**:
-```bash
-mv ~/.zshrc.bak ~/.zshrc
-```
