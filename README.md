@@ -1,16 +1,110 @@
-# Developer Workspace Bootstrap Environment Suite
+# Dev Setup
 
-Production-grade, clean workstation environment automation suite designed exclusively for **Debian 13 (Trixie)** setups running XFCE desktop wrapper structures. 
+Automated developer environment setup for Debian 13 (Trixie) with Ghostty, Zsh, Powerlevel10k, and modern CLI tools.
 
-It provides an isolated system where **Ghostty** launches a beautiful, fast **Zsh (Powerlevel10k)** engine, while preserving **Bash** cleanly as the default global shell.
+## Overview
 
-## Deep Integration Technical Features
-* **Zero System Intrusion:** Avoids standard security hazards; completely refrains from `chsh` commands or arbitrary global path modifications.
-* **100% Idempotent Design:** Run the tool configuration multiple times safely without duplicated alias maps or system corruption errors.
-* **Automated Data Defense:** Generates local backup files (`*.bak`) automatically before editing any infrastructure profiles.
+One-command installation script that configures a complete development workspace with curated tools, shell customizations, and a beautiful terminal environment.
 
-## Installation Execution
-Clone this repository workspace down into local staging vectors, then pass standard authorization handles:
+## What Gets Installed
+
+**Core Packages**: git, curl, wget, build-essential, zsh, ghostty, tmux, neovim, unzip, tree, jq
+
+**Modern CLI Tools**: eza, bat, ripgrep, fd-find, fzf, zoxide, btop, fastfetch, git-delta, lazygit
+
+**Shell Framework**: Oh My Zsh, Powerlevel10k theme
+
+**Zsh Plugins**: zsh-autosuggestions, zsh-syntax-highlighting, zsh-completions, fzf-tab, git, zoxide
+
+**Fonts**: JetBrainsMono Nerd Font
+
+## Requirements
+
+- Debian 13 (Trixie)
+- Internet connection
+- User with sudo access
+
+## Quick Start
+
 ```bash
+git clone https://github.com/AnshulPrajapati2401/dev-setup.git
+cd dev-setup
 chmod +x setup.sh
 ./setup.sh
+```
+
+## What Happens
+
+1. Validates internet and Debian 13 OS
+2. Installs APT packages and Lazygit
+3. Downloads and installs JetBrainsMono Nerd Font
+4. Installs Oh My Zsh and Powerlevel10k theme
+5. Installs Zsh plugins
+6. Configures Ghostty terminal
+
+## Features
+
+- **Idempotent**: Safe to run multiple times
+- **Automatic Backups**: Creates `.bak` files before modifying configs
+- **Non-Invasive**: Bash remains system default shell
+- **One-Command Setup**: Fully automated installation
+
+## Configuration Files
+
+Located in `configs/` directory:
+- `.zshrc` - Main Zsh config with Powerlevel10k and plugin setup
+- `aliases.zsh` - 13 command aliases with modern replacements
+- `functions.zsh` - 7 utility functions (mkcd, extract, git_cleanup, find_proc, kill_port, bak, gen_pass)
+- `ghostty/config` - Terminal theme, font, and behavior settings
+
+## Uninstall
+
+```bash
+./uninstall.sh
+```
+
+Removes all user-space configurations and restores from backups if available. APT packages remain installed.
+
+## Project Structure
+
+```
+dev-setup/
+├── setup.sh
+├── uninstall.sh
+├── scripts/
+│   ├── helpers.sh
+│   ├── install_packages.sh
+│   ├── install_fonts.sh
+│   ├── configure_zsh.sh
+│   ├── install_plugins.sh
+│   └── configure_ghostty.sh
+└── configs/
+    ├── .zshrc
+    ├── .p10k.zsh
+    ├── aliases.zsh
+    ├── functions.zsh
+    └── ghostty/config
+```
+
+## Key Notes
+
+- **Bash stays default** - Zsh only runs in Ghostty terminal
+- **Backups created** - All configs backed up with `.bak` extension before modification
+- **Safe to re-run** - Fully idempotent, checks before installing
+
+## Troubleshooting
+
+**Fonts not rendering**:
+```bash
+fc-cache -f -v
+```
+
+**Re-run setup**:
+```bash
+./setup.sh  # Safe to run multiple times
+```
+
+**Restore from backup**:
+```bash
+mv ~/.zshrc.bak ~/.zshrc
+```
