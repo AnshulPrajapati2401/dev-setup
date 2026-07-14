@@ -1,0 +1,20 @@
+# ==============================================================================
+# Ghostty Terminal Structural Performance Configuration
+# ==============================================================================
+
+# Core Interface Styling Profiles
+theme = catppuccin-mocha
+font-family = "JetBrainsMono Nerd Font"
+font-size = 13
+window-opacity = 0.95
+window-padding-x = 10
+window-padding-y = 10
+
+# Functional Behavioral Controls
+copy-on-select = true
+cursor-style = block
+mouse-hide-while-typing = true
+confirm-close-surface = false
+
+# Route Custom Execution Environments - Essential for Zsh isolation bypass loops
+command = /usr/bin/zsh
