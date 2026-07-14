@@ -2,6 +2,11 @@
 # Custom Execution Layer Shell Environment Entry Profile
 # ==============================================================================
 
+# Dynamic Visualization Blocks (Restricted to Ghostty Interactive Shells Only)
+if [[ -o interactive ]] && [[ "${TERM:-}" == *"xterm-ghostty"* || -n "${GHOSTTY_BIN_DIR:-}" ]]; then
+    fastfetch
+fi
+
 # Initialize Powerlevel10k Optimization Instant Engine Speed Hooks
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -34,11 +39,6 @@ source "$ZSH/oh-my-zsh.sh"
 # Integrated Component Extensions Environment Inits
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
 eval "$(zoxide init zsh)"
-
-# Dynamic Visualization Blocks (Restricted to Ghostty Interactive Shells Only)
-if [[ -o interactive ]] && [[ "${TERM:-}" == *"xterm-ghostty"* || -n "${GHOSTTY_BIN_DIR:-}" ]]; then
-    fastfetch
-fi
 
 # Storage History Profiles
 HISTSIZE=100000
